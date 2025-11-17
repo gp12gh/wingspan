@@ -1,0 +1,95 @@
+Sub ConvertFormatting()
+  Dim doc As Document
+  Dim rng As Range
+  Dim char As Range
+  Dim inBold As Boolean
+  Dim inItalic As Boolean
+  Dim i As Long
+  Dim textArray() As String
+  Dim formatArray() As String
+  Dim resultText As String
+  
+  Set doc = ActiveDocument
+  
+  ' First, replace all single asterisks with double asterisks
+  With doc.Content.Find
+    .ClearFormatting
+    .Text = "*"
+    .Replacement.Text = "**"
+    .Forward = True
+    .Wrap = wdFindContinue
+    .Format = False
+    .MatchCase = False
+    .MatchWholeWord = False
+    .MatchWildcards = False
+    .Execute Replace:=wdReplaceAll
+  End With
+  
+  ' Now process bold and italic formatting
+  Set rng = doc.Content
+  ReDim textArray(1 To rng.Characters.Count)
+  ReDim formatArray(1 To rng.Characters.Count)
+  
+  ' Collect character data and formatting
+  i = 1
+  For Each char In rng.Characters
+    textArray(i) = char.Text
+    
+    ' Check if formatting is directly applied (not from style)
+    Dim isBold As Boolean
+    Dim isItalic As Boolean
+    
+    isBold = (char.Font.Bold = wdToggle Or char.Font.Bold = True) And _
+         (char.Style.Font.Bold <> True)
+    isItalic = (char.Font.Italic = wdToggle Or char.Font.Italic = True) And _
+           (char.Style.Font.Italic <> True)
+    
+    formatArray(i) = ""
+    If isBold Then formatArray(i) = formatArray(i) & "B"
+    If isItalic Then formatArray(i) = formatArray(i) & "I"
+    
+    i = i + 1
+  Next char
+  
+  ' Build result string with markup
+  resultText = ""
+  inBold = False
+  inItalic = False
+  
+  For i = 1 To UBound(textArray)
+    Dim needBold As Boolean
+    Dim needItalic As Boolean
+    
+    needBold = InStr(formatArray(i), "B") > 0
+    needItalic = InStr(formatArray(i), "I") > 0
+    
+    ' Handle bold transitions
+    If needBold And Not inBold Then
+      resultText = resultText & "*"
+      inBold = True
+    ElseIf Not needBold And inBold Then
+      resultText = resultText & "*"
+      inBold = False
+    End If
+    
+    ' Handle italic transitions
+    If needItalic And Not inItalic Then
+      resultText = resultText & "_"
+      inItalic = True
+    ElseIf Not needItalic And inItalic Then
+      resultText = resultText & "_"
+      inItalic = False
+    End If
+    
+    resultText = resultText & textArray(i)
+  Next i
+  
+  ' Close any open formatting at end of document
+  If inBold Then resultText = resultText & "*"
+  If inItalic Then resultText = resultText & "_"
+  
+  ' Replace document content with result
+  doc.Content.Text = resultText
+  
+  MsgBox "Conversion complete!", vbInformation
+End Sub
