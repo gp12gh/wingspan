@@ -2,13 +2,6 @@
 
 # Class to assist the Parser
 class Helper
-  UNDERSCORE_BLANK = 'sjchdhgffrwsusuehdmdf' # Arbitrary "magic" constant
-  DOUBLE_STAR      = 'mndjdhsyebngfsypsjenf'
-
-  INDEX_REGEX_I     = /^(.*?)(I--)(.*?)(--I)(.*)$/.freeze
-  INDEX_REGEX_J     = /^(.*?)(J--)(.*?)(--J)(.*)$/.freeze
-  INDEX_LATIN_REGEX = /_[A-Z][a-z]+ [a-z]+_/.freeze
-
   def initialize(site, slug)
     @slug = slug
     @index_english = site.index_english
@@ -47,6 +40,13 @@ class Helper
   end
 
   private
+
+  UNDERSCORE_BLANK = 'sjchdhgffrwsusuehdmdf' # Arbitrary "magic" constant
+  DOUBLE_STAR      = 'mndjdhsyebngfsypsjenf'
+
+  INDEX_REGEX_I     = /^(.*?)(I--)(.*?)(--I)(.*)$/.freeze
+  INDEX_REGEX_J     = /^(.*?)(J--)(.*?)(--J)(.*)$/.freeze
+  INDEX_LATIN_REGEX = /_[A-Z][a-z]+ [a-z]+_/.freeze
 
   def bold_and_italic(txt)
     # Replace *bold* and _italic_ with HTML tags

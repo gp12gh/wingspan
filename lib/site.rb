@@ -11,7 +11,11 @@ class Site
     @index_latin = Hash.new { |h, k| h[k] = [] }
     @catalogue = {} # list of article titles for use by the index builder
     @config = Configurator.new
+  end
+
+  def build
     load_manifest
+    build_whole_site
   end
 
   def listen
@@ -48,7 +52,6 @@ class Site
       this_issue = one_manifest_line(s, this_issue)
     end
     this_issue.set_as_index # The last issue in the manifest is the index_page issue
-    build_whole_site
   end
 
   def locate_article(slug)
@@ -65,7 +68,7 @@ class Site
   end
 
   def copy_css
-    filename = @config.get(:filename_stylesheet)
+    filename = 'bcstyle.css'
     filespec_in = File.join(@config.get(:folder_source), filename)
     filespec_out = File.join(@config.get(:folder_output), filename)
     FileUtils.cp(filespec_in, filespec_out)

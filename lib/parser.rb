@@ -10,7 +10,7 @@ class Parser
   end
 
   def to_html
-    state = :p
+    state = :p # Assume paragraph unless indicated otherwise
     @lines.map.with_index do |line, i|
       @current_line = i + 2 # For error messages (first line is author)
       control, styling, text = @helper.parse_one_line(line.chomp)

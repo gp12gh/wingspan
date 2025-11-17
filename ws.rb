@@ -12,6 +12,13 @@ require_relative 'lib/issue'
 require_relative 'lib/index'
 require_relative 'lib/issueslist'
 require_relative 'lib/site'
+require_relative 'lib/installer'
 
 site = Site.new
-site.listen
+if ARGV[0] == '--install'
+  installer = Installer.new(site)
+  installer.install
+else
+  site.build
+  site.listen
+end

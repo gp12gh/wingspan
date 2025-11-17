@@ -12,9 +12,6 @@ filespec_template = C:\bcnn\source\template.txt
 # Where to find the manifest
 filespec_manifest = C:\bcnn\source\manifest.txt
 
-# The name of the stylesheet file
-filename_stylesheet = bcstyle.css
-
 # The html <title> of all pages
 title_text = BC Norfolk Newsletter
 
