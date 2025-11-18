@@ -1,0 +1,663 @@
+/* 
+  Style sheet for Butterfly Conservation Branch newsletter.
+  Copyright © 2025 Graham Phillips.
+*/
+
+:root {
+  --color-bg: #f0f8ff; /* Sides of very big screens */
+  --color-main: #f8fcff; /* Main content */
+  --color-accent: darkgreen;
+  --color-light: lightgray; 
+  --color-link: #333;
+  --color-link-bg: #d4d4d8;
+  --color-link-hover-bg: #eef;
+  --font-heading: system-ui, ui-sans-serif, sans-serif;
+  --font-body: ui-serif, serif;
+}
+
+/* =========================
+   Global Reset and Base
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg);
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   Typography
+========================= */
+
+h1, h2, h3, h4, ol.toc li {
+  font-family: var(--font-heading);
+}
+
+:where(p, h5, h6, table, caption, figcaption, li) {
+  font-family: var(--font-body);
+}
+
+h1 {
+  font-size: clamp(1.2rem, 2.5vw + 1rem, 6rem);
+}
+
+h1#bc {
+  font-size: clamp(1rem, 1vw + 1rem, 2rem);
+  font-weight: normal;
+  padding: 0.4rem 0.5rem 0.6rem;
+  background-color: var(--color-accent);
+  color: white;
+  text-align: center;
+}
+
+h2 {
+  font-size: clamp(1.1rem, 1.6vw + 1rem, 1.8rem);
+  margin: 0.5em 0;
+  text-align: center;
+  color: gray;
+}
+
+h3 {
+  font-size: clamp(1rem, 1rem + 1vw, 1.4rem);
+  font-weight: bold;
+  margin: 0 0 .6em;
+  text-align: left;
+}
+
+h4 {
+  margin-top: 1.2rem;
+}
+
+#c h4 {
+  font-size: clamp(1.2rem, 1.2rem + 1vw, 1.6rem);
+}
+
+h5 {
+  font-weight: bold;
+  padding: 1.2rem 0 0;
+  margin: .5em 0 0;
+}
+
+h6 {
+  font-weight: bold;
+  text-align: center;
+}
+
+p {
+  line-height: 1.5;
+  padding: 0.5em 0;
+}
+
+p, h4, h5, h6, li, td, th {
+  line-height: 1.5;
+  margin: 0.5em 0;
+  padding: 0;
+  font-size: clamp(.95rem, .78rem + 1vw, 1.2rem);
+}
+
+p.smaller {
+  font-size: clamp(.86rem, .72rem + .85vw, 1rem);
+}
+
+p.gap {
+  margin-top: 1rem;
+}
+
+p.floaty {
+  float: right;
+}
+
+p.righty {
+  text-align: right;
+}
+
+caption, figcaption {
+  line-height: 1.25;
+  padding: 0.35em 0;
+  font-size: clamp(.9rem, .73rem + 1vw, 1.25rem);
+}
+
+/* =========================
+   Layout Containers
+========================= */
+
+body {
+  width: min(100%, 800px);
+  margin: 0 auto;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: var(--color-light);
+  color: var(--color-accent);
+}
+
+main {
+  background-color: var(--color-main);
+  padding: 1em;
+}
+
+article {
+  background-color: transparent;
+  width: 100%;
+  padding-bottom: .5em;
+}
+
+footer {
+  clear: both;
+  display: flex;
+  background-color: var(--color-accent);
+  color: white;
+  padding: 1em;
+  margin: 0;
+}
+
+footer img {
+  width: 40%;
+  height: 100%;
+  aspect-ratio: 3.08;
+  margin: 2%;
+}
+
+footer div {
+  margin-left: 1rem;
+}
+
+footer p {
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+div.shaded {
+  background-color: #f0fff0;
+  padding: .6em;
+  border: 1px solid #d0ddd0;
+}
+
+div.fr {
+  float: right;
+  max-width: 100%;
+  margin-left: 1em;
+}
+
+hr {
+  display: block;
+  clear: both;
+  width: 100%;
+  margin: 0 auto;
+  border-style: inset;
+  border-width: 1px;
+}
+
+
+
+/* =========================
+   Links
+========================= */
+
+a {
+  background-color: var(--color-link-bg);
+  color: var(--color-link);
+  font-family: var(--font-heading);
+  text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid;
+  border-color: #ccc #333 #333 #ccc;
+  padding: 1px 0.5em;
+  margin: 0 0.35rem;
+}
+
+a:hover {
+  background-color: var(--color-link-hover-bg);
+}
+
+a:focus {
+  outline: 2px dashed #00f;
+  outline-offset: 2px;
+}
+
+#x dt a {
+  color: black;
+}
+
+#x dt a:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+#issues a {
+  font-size: 1.1rem;
+  padding: 1px 3px;
+}
+
+a.compact {
+  padding: 0.25rem;
+  margin: 0 0.25rem 0 .1rem;
+}
+
+a.neat {
+  font-size: 1rem;
+  margin-left: 0;
+}
+
+a.oneline {
+  white-space: nowrap;
+  margin-top: 1rem;
+}
+
+a.download {
+  font-size: 80%;
+  padding: .1rem 0.25rem .15rem;
+  margin: 0;
+}
+
+a.floaty {
+  float: right;
+  font-weight: normal;
+  color: black;
+  padding: 0.05em 0.3em;
+  margin: .6em 0 0;
+}
+
+a.plain {
+  background-color: transparent;
+  color: #00d;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+a.plain:hover {
+  text-decoration: underline;
+}
+
+a[target=_blank]:after {
+  content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+  margin: 0 3px;
+}
+
+
+
+/* =========================
+   TOC Styling
+========================= */
+
+ol.toc, ol.toc {
+  list-style-type: square;
+  /*font-size: clamp(1.05rem, 0.6rem + 1vw, 1.4rem); */
+  font-size: 1.2rem;
+  margin: 0 0 0 1.5rem;
+  padding: 0;
+}
+
+ol.toc li::marker {
+  font-size: inherit;
+  color: #abc;
+}
+
+ol.toc li {
+  line-height: 1.2;
+  padding: 0;
+  margin: .75rem 0 0 .25rem;
+  text-indent: -.5rem;
+}
+
+ol.toc li a {
+  background-color: transparent;
+  border: none;
+  padding: 0 0 0 .5rem;
+  margin: 0;
+  color: darkblue;
+}
+
+ol.toc a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Misc. Sections
+========================= */
+
+#coverphotoattribution {
+  background-color: var(--color-main);
+  text-align: right;
+  font-style: italic;
+  font-size: 0.95em;
+  padding: 0 .5rem .5rem 0;
+  margin: 0;
+}
+
+#subfooter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  background-color: #d4d8d8;
+  margin: 0 0 2em;
+  padding: .1em 0;
+}
+
+#subfooter p {
+  font-size: 0.85rem;
+  padding: 0 0.3em;
+  margin: 0;
+}
+
+#subfooter .smaller {
+  font-size: .65rem;
+  color: #444;
+}
+
+#header1 {
+  /* flex-grow: 1; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 50%;
+  padding-bottom: 1em;
+  background-color: transparent;
+  text-align: center;
+  color: darkgreen;
+}
+
+#header1 h2 {
+  font-size: clamp(1.2rem, .6rem + 2vw, 1.5rem);
+  margin: 0.5em .1em 0;
+  text-align: center;
+  color: darkgreen;
+}
+
+#header1 h3 {
+  font-size: clamp(1.2rem, .6rem + 2vw, 1.5rem);
+  margin: 0.05em .1em .2em;
+  text-align: center;
+}
+
+#a #header1 {
+  width: 72%;
+}
+
+#issues {
+  background-color: transparent;
+  text-align: center;
+  margin: .6em 0 0;
+}
+
+#c #issues {
+  text-align: right;
+}
+
+#c #issues a {
+  font-size: 1rem;
+  padding: 0 .3em 1px .5em;
+}
+
+#endlinks {
+  clear: both;
+  background-color: transparent;
+  padding: .8em 0 0;
+  margin: 0;
+}
+
+#endlinks tr * {
+  vertical-align: top;
+  line-height: 1.25em;
+  padding-top: .6em;
+}
+
+#endlinks tr th {
+  font-size: large;
+  font-weight: bold;
+  padding-right: .3em;
+}
+
+#events h4 {
+  margin-top: 1em;
+}
+
+#events p {
+  padding: 0 0 0 1.2em;
+}
+
+/* =========================
+   Lists and Tables
+========================= */
+
+ul, ol {
+  margin-left: 1.2em;
+}
+
+ul li, ol li {
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table.boxed td, table.boxed th {
+  border: 1px solid silver;
+}
+
+table.indented td, table.indented th {
+  padding: .2em 0 0 1.2em;
+}
+
+td {
+  padding: 2px 0.2em;
+  text-align: left;
+  vertical-align: top;
+}
+
+td.l {
+  text-align: left;
+}
+
+td.r {
+  text-align: right;
+}
+
+caption {
+  font-style: italic;
+  margin-bottom: 0.6em;
+  background-color: #e0e8ef;
+}
+
+#issueslist {
+  clear: both;
+  width: 100%;
+  list-style-type: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+#issueslist li {
+  padding: 0;
+  margin: .2em 0;
+}
+
+#issueslist a {
+  color: black;
+}
+
+#issueslist li img {
+  display: inline;
+  vertical-align: middle;
+  width: 110px;
+  margin-right: 1em;
+  /* width: 50%; */
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+#x dd ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#x dd ol li {
+  padding-left: 0;
+  margin: .35em 0 .35rem 3rem;
+  text-indent: -2rem;
+  line-height: 1;
+}
+
+#x dd ol li a {
+  font-size: 90%;
+  background-color: transparent;
+  color: #00d;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+#x dd ol li a:hover {
+  text-decoration: underline;
+}
+
+#x dt.gappy {
+  margin-top: 1rem;
+}
+
+
+
+/* =========================
+   Figures and Images
+========================= */
+
+#cover {
+  width: 50%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+#a #cover {
+  width: 28%;
+}
+
+figure {
+  width: 49.8%;
+  font-size: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+figure.w70 {
+  width: 70%;
+}
+
+figure.w30 {
+  width: 34%;
+}
+
+figure.widest {
+  width: 100%;
+}
+
+figure.fl {
+  float: left;
+  max-width: 49%;
+  margin-right: 1%;
+}
+
+figure.fr {
+  float: right;
+  max-width: 49%;
+  margin-left: 1%;
+}
+
+figure.bigfr {
+  float: right;
+  width: 70%;
+  margin-left: 1rem;
+}
+
+figure.central {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+figure img {
+  margin: 0;
+  padding: 0;
+}
+
+figcaption {
+  padding: 0.2rem 0.6rem;
+  font-style: italic;
+  background-color: #e0e8ef;
+}
+
+
+/* =========================
+   General purpose classes
+========================= */
+
+.clear {
+  clear: both;
+}
+
+.topcap {
+  display: table;
+}
+
+.topcap figcaption {
+  display: table-caption;
+  caption-side: top;
+}
+
+span.issuenumber {
+  font-variant-numeric: tabular-nums;
+  font-size: small;
+  background-color: #d0d8e0;
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.tight {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================
+   Media Queries
+========================= */
+
+@media (max-width: 600px) {
+  figure,
+  figure.fl,
+  figure.fr,
+  figure.w70,
+  figure.w30,
+  #header1,
+  #cover  {
+    width: 100%;
+    max-width: 100%;
+  }
+  footer {
+    display: block;
+  }
+}

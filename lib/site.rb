@@ -46,11 +46,13 @@ class Site
   def load_manifest
     @issues.empty
     this_issue = nil
-    File.foreach(@config.get(:filespec_manifest)) do |s|
+    manifest_file = @config.get(:filespec_manifest) 
+    File.foreach(manifest_file) do |s|
       next if s[0] == '#'
 
       this_issue = one_manifest_line(s, this_issue)
     end
+    abort "Error: no issue found in #{manifest_file}" unless this_issue
     this_issue.set_as_index # The last issue in the manifest is the index_page issue
   end
 
@@ -94,7 +96,7 @@ class Site
     when 'bcstyle'
       copy_css
     when 'manifest'
-      load_manifest # also rebuilds
+      build
     else
       locate_article(slug).write_html
     end

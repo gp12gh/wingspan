@@ -11,6 +11,10 @@ class Configurator
     @store[key] || (raise "Config key not found: #{key}")
   end
 
+  def inspect
+    @store.inspect
+  end
+
   private
 
   REQUIRED_KEYS = %i[

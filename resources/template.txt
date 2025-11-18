@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>{title}</title>
+<link rel="stylesheet" href="/bcstyle.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon16.png">
+<link rel="icon" type="image/x-icon" href="/img/favicon96.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon-apple-touch.png">
+<style>
+  #header1 {
+    background-color: transparent;
+  }
+</style>
+<script>
+function showhide(id) {
+  e = document.getElementById(id);
+  e.style.display = e.style.display == 'none' ? '' : 'none';
+}
+</script>
+<!--
+  Generator: Wingspan
+    docs: https://bcnorfolk.uk/wingspan/
+    code: https://github.com/gp12gh/wingspan
+    help: bc@gp12.com
+-->
+</head>
+
+<body>
+<h1 id="bc">Butterfly Conservation</h1>
+<header>
+  <img id="cover" {cover-photo}>
+  <div id="header1">
+    <h2>{headline}</h2>
+    <h3>{issue-number-season-year}</h3>
+    <div id="issues">
+    {links}
+    </div>
+  </div>
+</header>
+
+<main aria-label="Main content">
+{article-or-table-of-contents}
+</main>
+
+<p id="coverphotoattribution">Cover photo: {cover-photo-attribution}</p>
+<footer aria-label="Legal and contact information">
+<img alt="Butterfly Conservation logo" src="/img/bclogo.png">
+<div>
+  <p>The opinions expressed in this newsletter are those of the authors and not necessarily those of Butterfly Conservation.</p>
+  <p>Butterfly Conservation is a company limited by guarantee, registered in England (2206468).
+Registered Office: Manor Yard, East Lulworth, Wareham, Dorset, BH20&nbsp;5QP.
+Charity registered in England and Wales (254937)
+and in Scotland (SCO39268) VAT No GB&nbsp;991&nbsp;2771&nbsp;89</p>
+</div>
+</footer>
+<div id="subfooter">
+<p><em>Contact</em>&nbsp;<a class="plain" href="mailto:{contact_email}">{contact_email}</a></p>
+<p class="smaller">{version}</p>
+<p>No cookies used</p>
+</div>
+
+</body>
+</html>
