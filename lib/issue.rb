@@ -105,7 +105,7 @@ class Issue
            .sub('{headline}', headline(@site))
            .sub('<body>', '<body id="c">')
            .sub('{article-or-table-of-contents}', toc)
-           .sub('{links}', "#{homelink}<a href=\"/issues/\">Issues&nbsp;&gt;</a>")
+           .sub('{links}', "#{homelink}<a href=\"/issues/\">Past&nbsp;issues&nbsp;&gt;</a>")
     dirname = File.join(@folder_out, @number)
     ensure_dir(dirname)
     File.write(File.join(dirname, 'index.html'), page)

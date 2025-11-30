@@ -48,7 +48,7 @@ class Issueslist
   def make_issues_page(folder)
     list = <<~ENDOFSTRING
       <h2>#{headline(@site)}</h2>
-      <p><a class="floaty tight" href="/index/">&nbsp;Index of all issues&nbsp;</a></p>
+      <p><a class="floaty tight" href="/index/">&nbsp;Index of all issues&nbsp;&gt;&nbsp;</a></p>
       #{issues_page_ol}
     ENDOFSTRING
     content = issues_page_template.sub('{article-or-table-of-contents}', list)

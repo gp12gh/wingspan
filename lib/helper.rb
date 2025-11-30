@@ -26,7 +26,7 @@ class Helper
     bold_and_italic(txt)
     txt.gsub!(UNDERSCORE_BLANK, '_blank')
     # right-align numeric data cells
-    txt.gsub!(%r{<td>([-0-9. ,()]+)</td>}, '<td class="r">\1</td>')
+    txt.gsub!(%r{<td>([-0-9. ,(£)]+)</td>}, '<td class="r">\1</td>')
     txt
   end
 

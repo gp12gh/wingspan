@@ -1,16 +1,16 @@
 # Configuration file for Wingspan
 
 # Where to find the source (MyML) files for the articles
-folder_source = C:\bcnn\source
+folder_source = C:\bcnnsource
 
 # Where to put the resulting HTML files (web server root)
 folder_output = C:\bcnnweb
 
 # Where to find the template file
-filespec_template = C:\bcnn\source\template.txt
+filespec_template = C:\bcnnsource\template.txt
 
 # Where to find the manifest
-filespec_manifest = C:\bcnn\source\manifest.txt
+filespec_manifest = C:\bcnnsource\manifest.txt
 
 # The html <title> of all pages
 title_text = BC Norfolk Newsletter

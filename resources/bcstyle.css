@@ -43,6 +43,13 @@ h1, h2, h3, h4, ol.toc li {
   font-family: var(--font-heading);
 }
 
+p, h4, h5, h6, li, td, th {
+  line-height: 1.5;
+  margin: 0.5em 0;
+  padding: 0;
+  font-size: clamp(.95rem, .78rem + 1vw, 1.2rem);
+}
+
 :where(p, h5, h6, table, caption, figcaption, li) {
   font-family: var(--font-body);
 }
@@ -75,7 +82,7 @@ h3 {
 }
 
 h4 {
-  margin-top: 1.2rem;
+  margin-top: 1.5rem;
 }
 
 #c h4 {
@@ -98,11 +105,8 @@ p {
   padding: 0.5em 0;
 }
 
-p, h4, h5, h6, li, td, th {
-  line-height: 1.5;
-  margin: 0.5em 0;
-  padding: 0;
-  font-size: clamp(.95rem, .78rem + 1vw, 1.2rem);
+p.gappy {
+  margin-top: 1.5rem;
 }
 
 p.smaller {
@@ -560,28 +564,36 @@ figure {
   margin-bottom: 1rem;
 }
 
+figure.w30 {
+  width: 34%;
+}
+
 figure.w70 {
   width: 70%;
 }
 
-figure.w30 {
-  width: 34%;
+figure.w80 {
+  width: 80%;
 }
 
 figure.widest {
   width: 100%;
 }
 
+figure.smallest {
+  width: 20%;
+}
+
 figure.fl {
   float: left;
-  max-width: 49%;
-  margin-right: 1%;
+  max-width: 49.6%;
+  margin-right: .4%;
 }
 
 figure.fr {
   float: right;
-  max-width: 49%;
-  margin-left: 1%;
+  max-width: 49.6%;
+  margin-left: .4%;
 }
 
 figure.bigfr {
@@ -603,8 +615,26 @@ figure img {
 figcaption {
   padding: 0.2rem 0.6rem;
   font-style: italic;
-  background-color: #e0e8ef;
+  background-color: #e8eff6;
 }
+
+figure.norm figcaption {
+  font-style: normal;;
+}
+
+div.floatlefttextright {
+  float: left;
+  width: 48%;
+  margin-right: 2%;
+  margin-top: .6rem;
+}
+
+div.floatlefttextright figure {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 
 
 /* =========================
@@ -656,6 +686,12 @@ span.issuenumber {
   #cover  {
     width: 100%;
     max-width: 100%;
+  }
+  figure.floatlefttextright {
+    width: 55%;
+  }
+  figure.smallest {
+    width: 25%;
   }
   footer {
     display: block;
