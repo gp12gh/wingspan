@@ -15,6 +15,10 @@ class Issueslist
     @issues.clear
   end
 
+  def visible_issues
+    @issues.reject(&:hidden)
+  end
+
   def locate_issue(number)
     @issues.find { |i| i.number == number }
   end
@@ -40,7 +44,7 @@ class Issueslist
     # Generates the <ol> of issues for the issues page
     <<~ENDOFSTRING
       \n<ol id=\"issueslist\">
-      #{@issues.reverse.map(&:issues_page_li).join("\n")}
+      #{visible_issues.reverse.map(&:issues_page_li).join("\n")}
       </ol>
     ENDOFSTRING
   end

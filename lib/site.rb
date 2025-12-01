@@ -32,7 +32,7 @@ class Site
 
   def one_manifest_line(str, current_issue)
     this_issue = current_issue
-    if str =~ /^\d/
+    if str =~ /^[0-9-]/
       this_issue = Issue.new(manifest_line: str, site: self)
       @issues.add(this_issue)
     elsif (md = /^\s+(\w+)\s*(.*)$/.match(str))

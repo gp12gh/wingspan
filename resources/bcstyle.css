@@ -43,13 +43,6 @@ h1, h2, h3, h4, ol.toc li {
   font-family: var(--font-heading);
 }
 
-p, h4, h5, h6, li, td, th {
-  line-height: 1.5;
-  margin: 0.5em 0;
-  padding: 0;
-  font-size: clamp(.95rem, .78rem + 1vw, 1.2rem);
-}
-
 :where(p, h5, h6, table, caption, figcaption, li) {
   font-family: var(--font-body);
 }
@@ -82,7 +75,7 @@ h3 {
 }
 
 h4 {
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
 }
 
 #c h4 {
@@ -107,6 +100,13 @@ p {
 
 p.gappy {
   margin-top: 1.5rem;
+}
+
+p, h4, h5, h6, li, td, th {
+  line-height: 1.5;
+  margin: 0.5em 0;
+  padding: 0;
+  font-size: clamp(.95rem, .78rem + 1vw, 1.2rem);
 }
 
 p.smaller {
@@ -602,11 +602,6 @@ figure.bigfr {
   margin-left: 1rem;
 }
 
-figure.central {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 figure img {
   margin: 0;
   padding: 0;
@@ -621,6 +616,7 @@ figcaption {
 figure.norm figcaption {
   font-style: normal;;
 }
+
 
 div.floatlefttextright {
   float: left;
@@ -637,9 +633,16 @@ div.floatlefttextright figure {
 
 
 
+
+
 /* =========================
    General purpose classes
 ========================= */
+
+.central {
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .clear {
   clear: both;

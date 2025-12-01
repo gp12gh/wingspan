@@ -2,7 +2,7 @@
 
 # One issue of the printed newsletter, containing many articles
 class Issue
-  attr_reader :number, :site
+  attr_reader :number, :site, :hidden
 
   def initialize(manifest_line:, site:)
     @site = site
@@ -15,15 +15,20 @@ class Issue
 
   def parse_manifest_line(manifest_line)
     # 104 Spring 2023 #D9E4F9 Muslin Moth by John Kelf # Sample new format
-    md = /^(\d+)\s+([^#]+)(#\h+)\s+(.*)$/.match(manifest_line)
+    md = /^([0-9-]+)\s+([^#]+)(#\h+)\s+(.*)$/.match(manifest_line)
     if md
-      @number = md[1]
-      @date = md[2].strip
-      @color = md[3]
-      @photo = md[4]
+      do_match_data(md)
     else
       raise "Bad issue in manifest: #{manifest_line}" unless md
     end
+  end
+
+  def do_match_data(md)
+    @hidden = md[1].start_with?('-') # future issue, generated but not yet linked
+    @number = @hidden ? md[1][1..] : md[1]
+    @date = md[2].strip
+    @color = md[3]
+    @photo = md[4]
   end
 
   def new_article(art)
