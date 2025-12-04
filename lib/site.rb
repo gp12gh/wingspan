@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# The whole website, has many issues and two indexes
+# The whole website, has many Issues and two Indexes
 class Site
   attr_reader :catalogue, :index_english, :index_latin, :config
 
@@ -14,18 +14,20 @@ class Site
   end
 
   def build
+    puts "Compiling #{@config.get(:folder_source)}"
     load_manifest
     build_whole_site
   end
 
   def listen
     folder = @config.get(:folder_source)
-    puts "Watching #{folder} for changes... (Ctrl+C to stop)"
+    puts "Watching #{folder}. Press Enter to exit"
     listener = Listen.to(folder) do |changed, added, _removed|
       (changed + added).each { |f| refresh_file(f) }
     end
     listener.start
-    sleep
+    gets
+    listener.stop
   end
 
   private
@@ -74,7 +76,7 @@ class Site
     filespec_in = File.join(@config.get(:folder_source), filename)
     filespec_out = File.join(@config.get(:folder_output), filename)
     FileUtils.cp(filespec_in, filespec_out)
-    puts "css #{Time.now.strftime('%H:%M')}"
+    puts Time.now.strftime('%H:%M')
   end
 
   def build_whole_site
