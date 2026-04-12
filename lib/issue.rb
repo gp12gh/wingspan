@@ -13,6 +13,10 @@ class Issue
     @folder_out = @site.config.get(:folder_output)
   end
 
+  def current_issue?
+    @index_page
+  end
+
   def parse_manifest_line(manifest_line)
     # 104 Spring 2023 #D9E4F9 Muslin Moth by John Kelf # Sample new format
     md = /^([0-9-]+)\s+([^#]+)(#\h+)\s+(.*)$/.match(manifest_line)
@@ -92,7 +96,7 @@ class Issue
       #{article_links}
       </ol>
       #{pdf_link(@site, @number)}
-      <p><a href=\"/index/\">Index</a></p>
+      <p><a class=\"plain petite\" href=\"/index/\">Index to all issues</a></p>
     ENDOFSTRING
   end
 
@@ -107,15 +111,15 @@ class Issue
   end
 
   def write_contents_page
-    homelink = @index_page ? '' : '<a href="/">&lt;&nbsp;Current issue</a>'
+    homelink = current_issue? ? '' : '<a class="buttony" href="/">&lt;&nbsp;Current issue</a>'
     page = semi
            .sub('{headline}', headline(@site))
            .sub('<body>', '<body id="c">')
            .sub('{article-or-table-of-contents}', toc)
-           .sub('{links}', "#{homelink}<a href=\"/issues/\">Past&nbsp;issues</a>") 
+           .sub('{links}', "#{homelink}<a class=\"buttony\" href=\"/issues/\">Past&nbsp;issues</a>") 
     dirname = File.join(@folder_out, @number)
     ensure_dir(dirname)
     File.write(File.join(dirname, 'index.html'), page)
-    File.write(File.join(@folder_out, 'index.html'), page) if @index_page
+    File.write(File.join(@folder_out, 'index.html'), page) if current_issue?
   end
 end

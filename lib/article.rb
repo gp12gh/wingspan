@@ -52,15 +52,6 @@ class Article
     ENDOFSTRING
   end
 
-  def contents_links
-    <<~ENDOFSTRING
-      <p>
-      <a class=\"neat oneline\" href=\"/#{@issue.number}/\">Contents of this issue</a>
-      <a class=\"neat oneline\" href=\"/index/\">Index of all issues</a>
-      </p>
-    ENDOFSTRING
-  end
-
   def make_html_from_source(source_text)
     @author = source_text[0].chomp
     writing = source_text[1..]
@@ -89,6 +80,24 @@ class Article
     make_html_from_source(source_text)
   end
 
+  def homelink
+    @issue.current_issue? ? '' : '<a class="buttony" href="/">Current issue</a>'
+  end
+
+  def contents_links
+    <<~ENDOFSTRING
+      <p>
+      #{homelink}
+      <a class=\"buttony neat oneline\" href=\"/#{@issue.number}/\">Contents of this issue</a>
+      <a class=\"buttony neat oneline\" href=\"/index/\">Index to all issues</a>
+      </p>
+    ENDOFSTRING
+  end
+
+  def linkstext
+    "#{homelink} <a class=\"buttony\" href=\"/#{@issue.number}/\">Contents</a>"
+  end
+
   def make_page
     @issue
       .semi
@@ -96,7 +105,7 @@ class Article
       .sub('<body>', '<body id="a">') # mark for "article" styling
       .sub('{headline}', headline(@site))
       .sub('{article-or-table-of-contents}', html)
-      .sub('{links}', "<a href=\"/#{@issue.number}/\">Contents</a>")
+      .sub('{links}', linkstext)
       .gsub('-----', '<br>')
   end
 end

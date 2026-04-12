@@ -45,7 +45,7 @@ end
 
 def pdf_link_text(info)
   "\n<p>
-  <a href=\"/#{info[:filename]}\">
+  <a class=\"buttony\" href=\"/#{info[:filename]}\">
   Download #{info[:txt]} as PDF (#{file_size_text(info[:filespec])})</a>
   </p>"
 end

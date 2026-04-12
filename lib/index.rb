@@ -20,8 +20,8 @@ class Index
     <<~ENDOFSTRING
       <h2>#{headline(@site)}</h2>
       <p class="floaty righty tight smaller">
-        <a class="floaty tight" href="/">Home</a><br>
-        <a class="floaty tight" href="#{href}">#{link}</a>
+        <a class="buttony floaty tight" href="/">Home</a><br>
+        <a class="buttony floaty tight" href="#{href}">#{link}</a>
       </p>
       <h3 class="underlined">#{titl}</h3>
     ENDOFSTRING
