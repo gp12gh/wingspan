@@ -290,7 +290,7 @@ a.plain:hover {
 
 a[target=_blank]:after {
   content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
-  margin: 0 3px;
+  margin: 0 3px 0 5px;
 }
 
 
@@ -436,6 +436,22 @@ ol.toc a:hover {
 #events p {
   padding: 0 0 0 1.2em;
 }
+
+#ws {
+  font-size: small;
+  text-align: right;
+}
+
+#ws a {
+  margin: 0;
+  padding: 0 .3em 0 0;
+  background-color: transparent;
+  border: none;
+  color: #00c;
+  text-decoration: underline;
+}
+
+
 
 /* =========================
    Lists and Tables

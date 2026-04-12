@@ -47,6 +47,7 @@ class Issue
   end
 
   def semi
+    # Half-built template, with issue-specific data but not article-specific data. Cached for efficiency.
     @semi ||= make_semi
   end
 
@@ -87,10 +88,11 @@ class Issue
   def toc
     <<~ENDOFSTRING
       <h4>Contents</h4>
-      <ol class=\"toc\" role=\"list\">
+      <ol class=\"toc\">
       #{article_links}
       </ol>
       #{pdf_link(@site, @number)}
+      <p><a href=\"/index/\">Index</a></p>
     ENDOFSTRING
   end
 
@@ -110,7 +112,7 @@ class Issue
            .sub('{headline}', headline(@site))
            .sub('<body>', '<body id="c">')
            .sub('{article-or-table-of-contents}', toc)
-           .sub('{links}', "#{homelink}<a href=\"/issues/\">Past&nbsp;issues&nbsp;&gt;</a>")
+           .sub('{links}', "#{homelink}<a href=\"/issues/\">Past&nbsp;issues</a>") 
     dirname = File.join(@folder_out, @number)
     ensure_dir(dirname)
     File.write(File.join(dirname, 'index.html'), page)

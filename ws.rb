@@ -15,7 +15,7 @@ require_relative 'lib/site'
 require_relative 'lib/installer'
 
 site = Site.new
-if ARGV[0] == '--install'
+if ARGV[0] == '--initialize'
   installer = Installer.new(site)
   installer.install
 else

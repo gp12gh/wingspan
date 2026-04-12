@@ -45,6 +45,13 @@ end
 
 def pdf_link_text(info)
   "\n<p>
+  <a href=\"/#{info[:filename]}\">
+  Download #{info[:txt]} as PDF (#{file_size_text(info[:filespec])})</a>
+  </p>"
+end
+
+def pdf_link_textOLD(info)
+  "\n<p>
   <a class=\"download\" href=\"/#{info[:filename]}\">
   Download #{info[:txt]} as PDF (#{file_size_text(info[:filespec])})</a>
   </p>"

@@ -22,8 +22,12 @@ class Installer
 
   COPY_TO_WEB_ROOT = %w[
     index.html
+    privacy.html
     favicon.ico
+    apple-touch-icon-precomposed.png
+    apple-touch-icon.png
     robots.txt
+    403.html
     404.html
   ].freeze
 
@@ -39,7 +43,7 @@ class Installer
     bcstyle.css
     manifest.txt
     template.txt
-  ]
+  ].freeze
 
   def check_exists_and_empty(folder)
     if Dir.exist?(folder)

@@ -63,8 +63,8 @@ class Parser
 
   def image_element(str, attributes)
     md = %r{^([-a-z0-9◄►/.]+)\s(.*)$}.match(str)
-    raise "Bad or incomplete image marker at line #{@current_line} [#{str}]" unless md
-
+    return "<p class=\"error\">Bad image indicator, line #{@current_line}: #{str}</p>" unless md
+    
     alt, caption = @helper.alt_caption(md[2])
     filename = "/img/#{@slug}-#{md[1]}"
     filename << '.webp' unless filename.include?('.')
