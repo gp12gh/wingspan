@@ -38,7 +38,7 @@ class Parser
     when '.d'  then { html: "<div#{attributes}>", new_state: :p }
     when '.dx' then { html: '</div>', new_state: :p }
     when '.h'  then { html: "  <tr#{attributes}><th>#{text.gsub(/\t/, '</th><th>')}</th></tr>" }
-    when '.i'  then { html: image_element(text.strip, attributes) }
+    when '.f'  then { html: figure_element(text.strip, attributes) }
     when '.ol' then { html: "<ol#{attributes}>", new_state: :ol }
     when '.p'  then { html: "<p#{attributes}>#{text}</p>", new_state: :p }
     when '.t'  then { html: "<table#{attributes}>#{caption_text(text)}", new_state: :table }
@@ -61,9 +61,9 @@ class Parser
     { html: html }
   end
 
-  def image_element(str, attributes)
+  def figure_element(str, attributes)
     md = %r{^([-a-z0-9◄►/.]+)\s(.*)$}.match(str)
-    return "<p class=\"error\">Bad image indicator, line #{@current_line}: #{str}</p>" unless md
+    return "<p class=\"error\">Bad figure indicator, line #{@current_line}: #{str}</p>" unless md
     
     alt, caption = @helper.alt_caption(md[2])
     filename = "/img/#{@slug}-#{md[1]}"
