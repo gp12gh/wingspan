@@ -721,10 +721,6 @@ figure.norm figcaption {
    General purpose classes
 ========================= */
 
-.blue {
-  color: #4472C4;
-}
-
 .central {
   margin-left: auto;
   margin-right: auto;
@@ -732,6 +728,22 @@ figure.norm figcaption {
 
 .clear {
   clear: both;
+}
+
+.blue {
+  color: #4472C4;
+}
+
+.bcr {
+  background-color: #fcc;
+}
+
+.bcg {
+  background-color: #cfc;
+}
+
+.bcy {
+  background-color: #ddd;
 }
 
 .topcap {

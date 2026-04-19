@@ -23,13 +23,8 @@ class Helper
   end
 
   def tidyup(txt)
-    bold_and_italic(txt)
-    txt.gsub!(UNDERSCORE_BLANK, '_blank')
-    # right-align numeric data cells
-    txt.gsub!(%r{<td>([-0-9. ,(£)+−]+)</td>}, '<td class="r">\1</td>')
-    # <span> elements are indicated with the Δ character, U+0394 (Greek upper case delta).
-    txt.gsub!(%r{Δ(.*?)Δ(.*?)Δ}, '<span class="\1">\2</span>')
-    txt
+    t = spanify(table_cell_style(bold_and_italic(txt)))
+    t.gsub(UNDERSCORE_BLANK, '_blank')
   end
 
   def alt_caption(str)
@@ -52,15 +47,30 @@ class Helper
 
   def bold_and_italic(txt)
     # Replace *bold* and _italic_ with HTML tags
-    txt.gsub!('**', DOUBLE_STAR)
-    txt.gsub!(/(\*(.*?)\*|_(.*?)_)/) do |match|
+    txt.gsub('**', DOUBLE_STAR)
+      .gsub(/(\*(.*?)\*|_(.*?)_)/) do |match|
       if match.start_with?('*')
         "<strong>#{::Regexp.last_match(2)}</strong>" # in earlier versions, referenced as $2
       else
         "<em>#{::Regexp.last_match(3)}</em>"
       end
     end
-    txt.gsub!(DOUBLE_STAR, '*')
+    .gsub(DOUBLE_STAR, '*')
+  end
+
+  def table_cell_style(txt)
+    # First, converts .class in table cells to class="class",
+    # then right-aligns numeric data cells, then coallesces double classes.
+    # Note: copes with <td> and <th>. 
+    txt.gsub(%r{>\.([a-z0-9]+) (.+?)</t}, ' class="\1">\2</t') 
+      .gsub(%r{>([-0-9. ,(£)+−]+)</t}, ' class="r">\1</t') # includs minus sign character U+2212
+      .gsub(%r{class="(.+?)" class="(.+?)">}, 'class="\1 \2">')
+  end
+
+  def spanify(txt)
+    # <span> elements are indicated with the Δ character, U+0394 (Greek upper case delta).
+    # The first Δ is followed by the class name, then another Δ, then the text, then a final Δ.
+    txt.gsub(%r{Δ(.+?)Δ(.+?)Δ}, '<span class="\1">\2</span>')
   end
 
   def indexify(str)
