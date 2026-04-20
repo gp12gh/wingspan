@@ -13,6 +13,7 @@ class Parser
     state = :p # Assume paragraph unless indicated otherwise
     @lines.map.with_index do |line, i|
       @current_line = i + 2 # For error messages (first line is author)
+      next if line[0] == '#' # comment line
       control, styling, text = @helper.parse_one_line(line.chomp)
       attributes = get_attributes(styling)
       answer = process_line(control, text, attributes, state)
@@ -39,6 +40,7 @@ class Parser
     when '.dx' then { html: '</div>', new_state: :p }
     when '.h'  then { html: "  <tr#{attributes}><th>#{text.gsub(/\t/, '</th><th>')}</th></tr>" }
     when '.f'  then { html: figure_element(text.strip, attributes) }
+    when '.i'  then { html: img_element(text.strip, attributes) }
     when '.ol' then { html: "<ol#{attributes}>", new_state: :ol }
     when '.p'  then { html: "<p#{attributes}>#{text}</p>", new_state: :p }
     when '.t'  then { html: "<table#{attributes}>#{caption_text(text)}", new_state: :table }
@@ -74,6 +76,17 @@ class Parser
         #{caption}
       </figure>
     ENDOFSTRING
+  end
+
+  def img_element(str, attributes)
+    md = %r{^([-a-z0-9◄►/.]+)\s(.*)$}.match(str)
+    return "<p class=\"error\">Bad image indicator, line #{@current_line}: #{str}</p>" unless md
+    
+    alt = md[2]
+    #alt, caption_unused = @helper.alt_caption(md[2])
+    filename = "/img/#{@slug}-#{md[1]}"
+    filename << '.png' unless filename.include?('.')
+    "<img#{attributes} src=\"#{filename}\" alt=\"#{alt}\">"
   end
 
   def caption_text(str)
